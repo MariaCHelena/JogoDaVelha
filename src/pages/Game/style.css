@@ -1,27 +1,3 @@
-:root {
-    --O-color: #2196f3;
-    --X-color: #f44336;
-    --E-color: #777;
-
-    --green: #4caf50;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-
-    font-family: sans-serif;
-    height: 100vh;
-    background-color: #eee;
-}
-
 .titulo {
     text-align: center;
     font-size: 3rem;
