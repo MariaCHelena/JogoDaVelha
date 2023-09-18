@@ -61,7 +61,7 @@ const handleCelulaClick = (index) => {
   }
 
   return (
-    <main>
+    <section className='main'>
       <h1 className='titulo'>Jogo da Velha</h1>
 
       <div className={`quadro ${vencedor ? "game-over" : ""}`}>
@@ -90,7 +90,7 @@ const handleCelulaClick = (index) => {
         <button onClick={resetarJogo}>Recomeçar jogo!</button>
       </footer>
       }
-    </main>
+    </section>
   );
 }
 

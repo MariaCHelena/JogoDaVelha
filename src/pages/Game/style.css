@@ -1,3 +1,9 @@
+.main{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
 .titulo {
     text-align: center;
     font-size: 3rem;
