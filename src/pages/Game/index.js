@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.css';
+import Button from '../../components/Button';
 
 function App() {
   const quadroVazio = Array(9).fill("");
@@ -62,7 +63,11 @@ const handleCelulaClick = (index) => {
 
   return (
     <section className='main'>
-      <h1 className='titulo'>Jogo da Velha</h1>
+      <header className="board_cabecalho">
+        <Button caminho="/" texto="Voltar"/>
+        <h1 className='titulo'>Jogo da Velha</h1>
+        <Button caminho="/game" texto="Reiniciar"/>
+      </header>
 
       <div className={`quadro ${vencedor ? "game-over" : ""}`}>
         {quadro.map((item, index) => (

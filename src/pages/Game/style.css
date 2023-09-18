@@ -4,11 +4,19 @@
     justify-content: center;
 }
 
+.board_cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    
+    margin-bottom: 2rem;
+}
+
 .titulo {
     text-align: center;
     font-size: 3rem;
     color: #555;
-    margin-bottom: 2rem;
 }
 
 .quadro {
