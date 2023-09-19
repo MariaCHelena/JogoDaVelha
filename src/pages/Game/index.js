@@ -3,8 +3,7 @@ import './style.css';
 import Button from '../../components/Button';
 
 function App() {
-  localStorage.setItem("jogador1", 0);
-  localStorage.setItem("jogador2", 0);
+  
 
 
   const quadroVazio = Array(9).fill("");
@@ -23,19 +22,6 @@ const handleCelulaClick = (index) => {
   if(quadro[index] !== "") {
     return null;
   }
-
-  /*setQuadro(quadro.map((item, itemIndex) => {
-    console.log("itemIndex" + itemIndex)
-    console.log("index" + index)
-    console.log("item" + item)
-    if(itemIndex === index){
-      return jogadorAtual
-    } else {
-      return item
-    }
-    
-    }
-  ));*/
 
   quadro[index] = jogadorAtual;
 
@@ -59,14 +45,14 @@ const handleCelulaClick = (index) => {
 
     possibilidadesDeVencer.forEach(celulas => {
       if (celulas.every(celula => celula === "O")){
-        let pontuacao = localStorage.getItem("jogador1")
+        let pontuacao = parseInt(localStorage.getItem("jogador1")) 
         setVencedor("O");
-        localStorage.setItem("jogador1", pontuacao++);
+        localStorage.setItem("jogador1", pontuacao + 1);
       } 
       if (celulas.every(celula => celula === "X")){
-        let pontuacao = localStorage.getItem("jogador2")
+        let pontuacao = parseInt(localStorage.getItem("jogador2")) 
         setVencedor("X");
-        localStorage.setItem("jogador2", localStorage.getItem("jogador2")++);
+        localStorage.setItem("jogador2", pontuacao + 1);
       } 
     });
 
