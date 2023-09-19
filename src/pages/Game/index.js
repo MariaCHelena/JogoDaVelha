@@ -3,6 +3,10 @@ import './style.css';
 import Button from '../../components/Button';
 
 function App() {
+  localStorage.setItem("jogador1", 0);
+  localStorage.setItem("jogador2", 0);
+
+
   const quadroVazio = Array(9).fill("");
 
   const [quadro, setQuadro] = useState(quadroVazio)
@@ -54,8 +58,16 @@ const handleCelulaClick = (index) => {
     ];
 
     possibilidadesDeVencer.forEach(celulas => {
-      if (celulas.every(celula => celula === "O")) setVencedor("O");
-      if (celulas.every(celula => celula === "X")) setVencedor("X");
+      if (celulas.every(celula => celula === "O")){
+        let pontuacao = localStorage.getItem("jogador1")
+        setVencedor("O");
+        localStorage.setItem("jogador1", pontuacao++);
+      } 
+      if (celulas.every(celula => celula === "X")){
+        let pontuacao = localStorage.getItem("jogador2")
+        setVencedor("X");
+        localStorage.setItem("jogador2", localStorage.getItem("jogador2")++);
+      } 
     });
 
     checarEmpate();
