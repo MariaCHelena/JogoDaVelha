@@ -20,9 +20,23 @@ const handleCelulaClick = (index) => {
     return null;
   }
 
-  setQuadro(quadro.map((item, itemIndex) => itemIndex === index ? jogadorAtual : item));
+  /*setQuadro(quadro.map((item, itemIndex) => {
+    console.log("itemIndex" + itemIndex)
+    console.log("index" + index)
+    console.log("item" + item)
+    if(itemIndex === index){
+      return jogadorAtual
+    } else {
+      return item
+    }
+    
+    }
+  ));*/
+
+  quadro[index] = jogadorAtual;
 
   setJogadorAtual(jogadorAtual === "X" ? "O" : "X");
+  checarVencedor();
 }
 
   const checarVencedor = () => {
@@ -48,8 +62,10 @@ const handleCelulaClick = (index) => {
   }
 
   const checarEmpate = () => {
-    if (quadro.every(item => item !== "")) {
-      setVencedor("E");
+    if (vencedor){
+      if (quadro.every(item => item !== "")) {
+        setVencedor("E");
+      }
     }
   }
 

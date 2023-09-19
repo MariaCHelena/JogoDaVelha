@@ -9,6 +9,8 @@ import {
 // Importando as páginas da aplicação
 import { Home } from './pages/Home';
 import App from './pages/Game';
+import { SelecaoJogador } from './pages/SelecaoJogadores'
+
 
 const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/game",
     element: <App />
+  },
+  {
+    path: "/selecao",
+    element: <SelecaoJogador />
   }
 ])
 
