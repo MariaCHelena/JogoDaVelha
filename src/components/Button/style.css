@@ -9,4 +9,9 @@
   display: block;
 
   cursor: pointer;
+  transition: .4s;
+}
+
+.button:hover{
+  transform: translateX(-5px);
 }
