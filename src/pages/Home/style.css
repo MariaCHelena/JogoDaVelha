@@ -12,4 +12,6 @@
 
 .buttons_wrapper{
   margin-top: 2em;
+  display: flex;
+  column-gap: 3rem;
 }

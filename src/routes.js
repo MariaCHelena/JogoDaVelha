@@ -8,8 +8,9 @@ import {
 
 // Importando as páginas da aplicação
 import { Home } from './pages/Home';
-import App from './pages/Game';
-import { SelecaoJogador } from './pages/SelecaoJogadores'
+import { SinglePlayer } from './pages/SinglePlayer';
+import { Multiplayer } from './pages/Multiplayer';
+import { SelecaoJogador } from './pages/SelecaoJogadores';
 
 
 const router = createBrowserRouter([
@@ -18,8 +19,12 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/game",
-    element: <App />
+    path: "/singleplayer",
+    element: <SinglePlayer />
+  },
+  {
+    path: "/multiplayer",
+    element: <Multiplayer />
   },
   {
     path: "/selecao",

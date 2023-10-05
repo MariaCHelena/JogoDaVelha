@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./style.css";
 import Button from "../../components/Button";
 
-function App() {
+export const Multiplayer = () => {
   const quadroVazio = Array(9).fill("");
 
   const [quadro, setQuadro] = useState(quadroVazio);
@@ -61,7 +61,7 @@ function App() {
   };
 
   const resetarJogo = () => {
-    setJogadorAtual("O");
+    setJogadorAtual("X");
     setQuadro(quadroVazio);
     setVencedor(null);
   };
@@ -75,7 +75,7 @@ function App() {
           <div style={{width: '100px'}}/>
         ) : (
           <div onClick={() => setQuadro(quadroVazio)}>
-            <Button caminho="/game" texto="Reiniciar" />
+            <Button caminho="/multiplayer" texto="Reiniciar" />
           </div>
         )}
       </header>
@@ -109,5 +109,3 @@ function App() {
     </section>
   );
 }
-
-export default App;
