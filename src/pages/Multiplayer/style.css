@@ -136,3 +136,27 @@ button {
   left: 35vw;
   top: 35vh;
 }
+
+.mensagem-bot {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  border: 10px solid silver;
+  border-top-color: var(--green);
+  animation: loading-circle 1s linear infinite;
+}
+
+@keyframes loading-circle {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

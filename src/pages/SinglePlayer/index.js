@@ -12,21 +12,23 @@ export const SinglePlayer = () => {
   const [vencedor, setVencedor] = useState(null);
 
   useEffect(() => {
+    checarEmpate();
+    checarVencedor();
     if (jogadorAtual === jogador2 && !vencedor) {
-      const emptyCells = quadro
-        .map((cell, index) => (cell === "" ? index : null))
-        .filter((cell) => cell !== null);
+      const celulasVazias = quadro
+        .map((celula, index) => (celula === "" ? index : null))
+        .filter((celula) => celula !== null);
 
-      if (emptyCells.length > 0) {
-        const randomIndex = Math.floor(Math.random() * emptyCells.length);
-        const aiMove = emptyCells[randomIndex];
+      if (celulasVazias.length > 0 && !vencedor) {
+        const randomIndex = Math.floor(Math.random() * celulasVazias.length);
+        const botMove = celulasVazias[randomIndex];
 
         setTimeout(() => {
-          handleCelulaClick(aiMove);
+          handleCelulaClick(botMove);
         }, 1000);
       }
     }
-  }, [jogadorAtual, quadro, vencedor]);
+  }, [jogadorAtual]);
 
   const handleCelulaClick = (index) => {
     if (vencedor) {
@@ -43,8 +45,6 @@ export const SinglePlayer = () => {
 
     setQuadro(novoQuadro);
     setJogadorAtual(jogadorAtual === jogador1 ? jogador2 : jogador1);
-    checarEmpate();
-    checarVencedor();
   };
 
   const checarVencedor = () => {
@@ -62,14 +62,15 @@ export const SinglePlayer = () => {
     ];
 
     possibilidadesDeVencer.forEach((celulas) => {
-      if (celulas.every((celula) => celula === "O")) {
-        let pontuacao = parseInt(localStorage.getItem("jogador1"));
-        setVencedor("O");
-        localStorage.setItem("jogador1", pontuacao + 1);
-      }
       if (celulas.every((celula) => celula === "X")) {
-        let pontuacao = parseInt(localStorage.getItem("jogador2"));
+        let pontuacao = parseInt(localStorage.getItem("jogador1"));
         setVencedor("X");
+        localStorage.setItem("jogador1", pontuacao + 1);
+        return;
+      }
+      if (celulas.every((celula) => celula === "O")) {
+        let pontuacao = parseInt(localStorage.getItem("jogador2"));
+        setVencedor("O");
         localStorage.setItem("jogador2", pontuacao + 1);
       }
     });
@@ -81,9 +82,12 @@ export const SinglePlayer = () => {
     }
   };
 
+  const pontuacaoJogador1 = parseInt(localStorage.getItem("jogador1"));
+  const pontuacaoJogador2 = parseInt(localStorage.getItem("jogador2"));
+
   const resetarJogo = () => {
-    setJogadorAtual(jogador1);
     setQuadro(quadroVazio);
+    setJogadorAtual(jogador1);
     setVencedor(null);
   };
 
@@ -95,23 +99,41 @@ export const SinglePlayer = () => {
         {vencedor ? (
           <div style={{ width: "100px" }} />
         ) : (
-          <div onClick={() => resetarJogo}>
+          <div onClick={resetarJogo}>
             <Button caminho="/singleplayer" texto="Reiniciar" />
           </div>
         )}
       </header>
 
-      <div className={`quadro ${vencedor ? "game-over" : ""}`}>
-        {quadro.map((item, index) => (
-          <div
-            key={index}
-            className={`celula ${item}`}
-            onClick={() => handleCelulaClick(index)}
-          >
-            {item}
+      <div className="corpo">
+          <div className="jogador1">
+            <p>Pontuação Jogador X: {pontuacaoJogador1}</p>
           </div>
-        ))}
-      </div>
+          <div className={`quadro ${vencedor ? "game-over" : ""}`}>
+            {quadro.map((item, index) => (
+              <div
+                key={index}
+                className={`celula ${item}`}
+                onClick={() => { if (jogadorAtual === jogador1) handleCelulaClick(index) }}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+          <div className="jogador2">
+            <p>Pontuação Jogador O: {pontuacaoJogador2}</p>
+          </div>
+        </div>
+
+      {(jogadorAtual === jogador2) && !vencedor ? (
+        <footer>
+          <h2 class="mensagem-bot">
+            <div class="loading" />
+          </h2>
+        </footer>
+      ) : (
+        <></>
+      )}
 
       {vencedor && (
         <footer>
