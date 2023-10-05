@@ -93,3 +93,46 @@ button {
 
   cursor: pointer;
 }
+
+.corpo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  /* row-gap: 5rem; */
+}
+
+.jogador1{
+  /* background-color: ; */
+  font-size: larger;
+  padding: 10px;
+  /* border-radius: 5px; */
+}
+
+
+.jogador2 {
+  /* background-color: ; */
+  font-size: larger;
+  padding: 10px;
+  /* border-radius: 5px; */
+}
+
+.modalBg {
+  z-index: 9;
+  background-color: #00000047;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.modalContent {
+  background-color: white;
+  z-index: 999;
+  width: 30vw;
+  height: 30vh;
+  position: fixed;
+  align-self: center;
+  justify-self: center;
+  left: 35vw;
+  top: 35vh;
+}

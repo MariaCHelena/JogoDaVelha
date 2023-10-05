@@ -1,13 +1,15 @@
+
 import React, { useState } from "react";
 import "./style.css";
 import Button from "../../components/Button";
 
-export const Multiplayer = () => {
+export const SinglePlayer = () => {
   const quadroVazio = Array(9).fill("");
 
   const [quadro, setQuadro] = useState(quadroVazio);
   const [jogadorAtual, setJogadorAtual] = useState("O");
   const [vencedor, setVencedor] = useState(null);
+  const [modal, setModal] = useState(true);
 
   const handleCelulaClick = (index) => {
     if (vencedor) {
@@ -54,6 +56,9 @@ export const Multiplayer = () => {
     });
   };
 
+  const pontuacaoJogador1 = parseInt(localStorage.getItem("jogador1"));
+  const pontuacaoJogador2 = parseInt(localStorage.getItem("jogador2"));
+
   const checarEmpate = () => {
     if (quadro.every((item) => item !== "")) {
       setVencedor("E");
@@ -61,12 +66,28 @@ export const Multiplayer = () => {
   };
 
   const resetarJogo = () => {
-    setJogadorAtual("X");
+    setJogadorAtual("O");
     setQuadro(quadroVazio);
     setVencedor(null);
   };
 
   return (
+    <>{modal ? 
+      <>
+        <div className="modalBg" onClick={() => setModal(!modal)}/>
+        <div className="modalContent">
+          <form>
+            <input type="text" className="playerX" value={nomeX} onChange={(event) => {setNomeX(event.target.value)}} placeholder="Player: X"></input>
+            <input type="text" className="playerO" value={nomeY} onChange={(event) => {setNomeY(event.target.value)}} placeholder="Player: O"></input>
+            <button type="submit">Confirmar</button>
+          </form>
+        </div>
+      </>
+
+      :
+      
+      <></>
+      }
     <section className="main">
       <header className="board_cabecalho">
         <Button caminho="/" texto="Voltar" />
@@ -75,22 +96,32 @@ export const Multiplayer = () => {
           <div style={{width: '100px'}}/>
         ) : (
           <div onClick={() => setQuadro(quadroVazio)}>
-            <Button caminho="/multiplayer" texto="Reiniciar" />
+            <Button caminho="/game" texto="Reiniciar" />
           </div>
         )}
       </header>
 
-      <div className={`quadro ${vencedor ? "game-over" : ""}`}>
-        {quadro.map((item, index) => (
-          <div
-            key={index}
-            className={`celula ${item}`}
-            onClick={() => handleCelulaClick(index)}
-          >
-            {item}
-          </div>
-        ))}
+      <div className="corpo">
+        <div className="jogador1">
+          <p>Pontuação Jogador O: {pontuacaoJogador1}</p>
+        </div>
+        <div className={`quadro ${vencedor ? "game-over" : ""}`}>
+          {quadro.map((item, index) => (
+            <div
+              key={index}
+              className={`celula ${item}`}
+              onClick={() => handleCelulaClick(index)}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+        <div className="jogador2">
+          <p>Pontuação Jogador X: {pontuacaoJogador2}</p>
+        </div>
       </div>
+
+      
 
       {vencedor && (
         <footer>
@@ -107,5 +138,6 @@ export const Multiplayer = () => {
         </footer>
       )}
     </section>
+    </>
   );
 }
