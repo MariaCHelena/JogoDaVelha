@@ -13,7 +13,6 @@ export const SinglePlayer = () => {
 
   useEffect(() => {
     if (jogadorAtual === jogador2 && !vencedor) {
-      
       const emptyCells = quadro
         .map((cell, index) => (cell === "" ? index : null))
         .filter((cell) => cell !== null);
@@ -94,7 +93,7 @@ export const SinglePlayer = () => {
         <Button caminho="/" texto="Voltar" />
         <h1 className="titulo">Jogo da Velha</h1>
         {vencedor ? (
-          <div style={{width: '100px'}}/>
+          <div style={{ width: "100px" }} />
         ) : (
           <div onClick={() => resetarJogo}>
             <Button caminho="/singleplayer" texto="Reiniciar" />
@@ -130,4 +129,4 @@ export const SinglePlayer = () => {
       )}
     </section>
   );
-}
+};
