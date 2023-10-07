@@ -4,9 +4,11 @@ import Button from "../../components/Button";
 
 export const Multiplayer = () => {
   const quadroVazio = Array(9).fill("");
+  const jogador1 = "X";
+  const jogador2 = "O";
 
   const [quadro, setQuadro] = useState(quadroVazio);
-  const [jogadorAtual, setJogadorAtual] = useState("X");
+  const [jogadorAtual, setJogadorAtual] = useState(jogador1);
   const [vencedor, setVencedor] = useState(null);
   // const [modal, setModal] = useState(true);
 
@@ -22,7 +24,7 @@ export const Multiplayer = () => {
 
     quadro[index] = jogadorAtual;
 
-    setJogadorAtual(jogadorAtual === "X" ? "O" : "X");
+    setJogadorAtual(jogadorAtual === jogador1 ? jogador2 : jogador1);
     checarEmpate();
     checarVencedor();
   };
@@ -42,14 +44,14 @@ export const Multiplayer = () => {
     ];
 
     possibilidadesDeVencer.forEach((celulas) => {
-      if (celulas.every((celula) => celula === "X")) {
+      if (celulas.every((celula) => celula === jogador1)) {
         let pontuacao = parseInt(localStorage.getItem("jogador1"));
-        setVencedor("X");
+        setVencedor(jogador1);
         localStorage.setItem("jogador1", pontuacao + 1);
       }
-      if (celulas.every((celula) => celula === "O")) {
+      if (celulas.every((celula) => celula === jogador2)) {
         let pontuacao = parseInt(localStorage.getItem("jogador2"));
-        setVencedor("O");
+        setVencedor(jogador2);
         localStorage.setItem("jogador2", pontuacao + 1);
       }
     });
@@ -65,9 +67,17 @@ export const Multiplayer = () => {
   };
 
   const resetarJogo = () => {
-    setJogadorAtual("X");
+    setJogadorAtual(jogador1);
     setQuadro(quadroVazio);
     setVencedor(null);
+  };
+
+  const resetarPlacar = () => {
+    setQuadro(quadroVazio);
+    setJogadorAtual(jogador1);
+    setVencedor(null);
+    localStorage.setItem("jogador1", 0);
+    localStorage.setItem("jogador2", 0);
   };
 
   return (
@@ -109,7 +119,7 @@ export const Multiplayer = () => {
           {vencedor ? (
             <div style={{ width: "100px" }} />
           ) : (
-            <div onClick={resetarJogo}>
+            <div onClick={resetarPlacar}>
               <Button caminho="/multiplayer" texto="Reiniciar" />
             </div>
           )}

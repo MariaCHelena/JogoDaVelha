@@ -6,6 +6,8 @@
 
 .board_cabecalho {
   display: flex;
+  margin-left: 25vw;
+  margin-right: 25vw;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
