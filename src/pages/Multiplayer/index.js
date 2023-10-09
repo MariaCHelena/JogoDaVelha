@@ -112,53 +112,73 @@ export const Multiplayer = () => {
       ) : (
         <></>
       )} */}
-      <section className="main">
-        <header className="board_cabecalho">
-          <Button caminho="/" texto="Voltar" />
-          <h1 className="titulo">Jogo da Velha</h1>
-          {vencedor ? (
-            <div style={{ width: "100px" }} />
-          ) : (
-            <div onClick={resetarPlacar}>
-              <Button caminho="/multiplayer" texto="Reiniciar" />
-            </div>
-          )}
-        </header>
-
-        <div className="corpo">
-          <div className="jogador1">
-            <p>Pontuação Jogador X: {pontuacaoJogador1}</p>
-          </div>
-          <div className={`quadro ${vencedor ? "game-over" : ""}`}>
-            {quadro.map((item, index) => (
-              <div
-                key={index}
-                className={`celula ${item}`}
-                onClick={() => handleCelulaClick(index)}
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-          <div className="jogador2">
-            <p>Pontuação Jogador O: {pontuacaoJogador2}</p>
-          </div>
-        </div>
-
-        {vencedor && (
-          <footer>
-            {vencedor === "E" ? (
-              <h2 class="mensagem-vencedor">
-                <span className={vencedor}>Empatou!</span>
-              </h2>
+      <section className="container">
+        <section className="main">
+          <header className="board_cabecalho">
+            <Button caminho="/" texto="Voltar" />
+            <h1 className="titulo">Jogo da Velha</h1>
+            {vencedor ? (
+              <div style={{ width: "12vw" }} />
             ) : (
-              <h2 class="mensagem-vencedor">
-                <span className={vencedor}>{vencedor}</span> venceu!
-              </h2>
+              <div onClick={resetarPlacar}>
+                <Button caminho="/multiplayer" texto="Reiniciar Placar" />
+              </div>
             )}
-            <button onClick={resetarJogo}>Recomeçar jogo!</button>
-          </footer>
-        )}
+          </header>
+
+          <div className="corpo">
+            <div className="placar">
+              <h3 className="placar-jogador">
+                Pontuação Jogador X:
+                <p
+                  className="placar-pontos"
+                  style={{ color: "var(--X-color)" }}
+                >
+                  {pontuacaoJogador1}
+                </p>
+              </h3>
+            </div>
+
+            <div className={`quadro ${vencedor ? "game-over" : ""}`}>
+              {quadro.map((item, index) => (
+                <div
+                  key={index}
+                  className={`celula ${item}`}
+                  onClick={() => handleCelulaClick(index)}
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
+
+            <div className="placar">
+              <h3 className="placar-jogador">
+                Pontuação Jogador O:
+                <p
+                  className="placar-pontos"
+                  style={{ color: "var(--O-color)" }}
+                >
+                  {pontuacaoJogador2}
+                </p>
+              </h3>
+            </div>
+          </div>
+
+          {vencedor && (
+            <footer>
+              {vencedor === "E" ? (
+                <h2 class="mensagem-vencedor">
+                  <span className={vencedor}>Empatou!</span>
+                </h2>
+              ) : (
+                <h2 class="mensagem-vencedor">
+                  <span className={vencedor}>{vencedor}</span> venceu!
+                </h2>
+              )}
+              <button onClick={resetarJogo}>Recomeçar jogo!</button>
+            </footer>
+          )}
+        </section>
       </section>
     </>
   );

@@ -4,21 +4,30 @@
   justify-content: center;
 }
 
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../../assets/background.png");
+  background-attachment: fixed;
+}
+
 .board_cabecalho {
   display: flex;
-  margin-left: 25vw;
-  margin-right: 25vw;
+  margin-left: 20vw;
+  margin-right: 20vw;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
 
-  margin-bottom: 2rem;
+  height: 18vh;
 }
 
 .titulo {
   text-align: center;
   font-size: 3rem;
-  color: #555;
+  margin: 5vh;
+  color: goldenrod;
+  text-shadow: black 6px 6px;
 }
 
 .quadro {
@@ -26,6 +35,15 @@
   grid-template-columns: repeat(3, 240px);
   grid-template-rows: repeat(3, 200px);
   gap: 1rem;
+
+  background-image: url("../../assets/background.png");
+  box-shadow: inset goldenrod 0px 0px 100px;
+  background-size: 100% 100%;
+
+  border: 5px solid var(--green);
+  border-radius: 50px;
+  padding: 2rem;
+  scale: 0.8;
 }
 
 .quadro.game-over {
@@ -37,11 +55,11 @@
   align-items: center;
   justify-content: center;
 
-  background-color: white;
+  background-color: rgb(209, 194, 172);
   border-radius: 5px;
   font-size: 3rem;
   font-weight: bold;
-  color: #00000066;
+  color: rgb(233, 233, 233);
 
   cursor: pointer;
 }
@@ -65,11 +83,17 @@
 }
 
 footer {
+  height: 15vh;
   text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .mensagem-vencedor {
   margin: 2rem;
+  color: goldenrod;
+  text-shadow: black 2px 2px;
 }
 
 .mensagem-vencedor span.O {
@@ -85,38 +109,51 @@ footer {
 }
 
 button {
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1.2rem;
+  width: 12vw;
   border: none;
+  text-align: center;
   border-radius: 5px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.6);
   background-color: var(--green);
-  color: white;
+  box-shadow: inset gold 0px 0px 5px;
+  color: gold;
   font-size: 1.2rem;
+  display: block;
 
   cursor: pointer;
+  transition: .4s;
+}
+
+button:hover{
+  transform: scale(1.1);
 }
 
 .corpo{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90vw;
+  width: 85vw;
+  height: 60vh;
   /* row-gap: 5rem; */
 }
 
-.jogador1{
-  /* background-color: ; */
-  font-size: larger;
+.placar {
   padding: 10px;
-  /* border-radius: 5px; */
+  text-align: center;
 }
 
+.placar-jogador {
+  font-size: 2rem;
+  color: goldenrod;
+  text-shadow: black 3px 3px;
+  padding-bottom: 2vh;
+}
 
-.jogador2 {
-  /* background-color: ; */
-  font-size: larger;
-  padding: 10px;
-  /* border-radius: 5px; */
+.placar-pontos {
+  font-size: 7rem;
+  color: var(--green);
+  text-shadow: black 3px 3px;
 }
 
 .modalBg {
@@ -149,7 +186,7 @@ button {
   width: 4em;
   height: 4em;
   border-radius: 50%;
-  border: 10px solid silver;
+  border: 10px solid goldenrod;
   border-top-color: var(--green);
   animation: loading-circle 1s linear infinite;
 }
